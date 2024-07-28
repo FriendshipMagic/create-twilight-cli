@@ -1,6 +1,6 @@
 {
   "name": "create-twilight-app",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
@@ -9,8 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FriendshipMagic/twilight-cli.git"
+    "url": "git+https://github.com/FriendshipMagic/create-twilight-app.git"
   },
+  "keywords": [
+    "react",
+    "vite",
+    "cli"
+  ],
   "author": "friendshipmagic",
   "license": "MIT",
   "private": false,
