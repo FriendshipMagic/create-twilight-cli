@@ -37,9 +37,8 @@ async function main() {
     // 递归复制目录
     // 排除 .git 目录
     copySync(templatePath, projectPath, {
-        filter: (src) => !src.includes('.git')
+        filter: (src) => path.basename(src) !== '.git'
     })
-
 
     console.log(chalk.green(`Creating a new project in ${projectPath}.`))
 
