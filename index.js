@@ -40,6 +40,12 @@ async function main() {
         filter: (src) => path.basename(src) !== '.git'
     })
 
+    // 将 .npmignore 替换为 .gitignore
+    execaSync('mv', [path.join(projectPath, '.npmignore'), path.join(projectPath, '.gitignore')], {
+        cwd: projectPath,
+        stdio: 'inherit'
+    })
+
     console.log(chalk.green(`Creating a new project in ${projectPath}.`))
 
     // 初始化 Git 仓库并进行初次提交
