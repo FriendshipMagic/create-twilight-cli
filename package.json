@@ -1,0 +1,10 @@
+{
+  "name": "create-twilight-cli",
+  "version": "1.0.0",
+  "description": "A cli to quickly create a modern react project",
+  "main": "index.js",
+  "repository": "https://github.com/FriendshipMagic/twilight-cli",
+  "author": "friendshipmagic",
+  "license": "MIT",
+  "private": false
+}
