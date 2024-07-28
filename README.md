@@ -1,4 +1,4 @@
-# Twilight Cli: Frontend is Magic
+# Create-Twilight-App: Create a react app using twilight-cli
 
 致力于为前端开发者快速构建一个现代react项目
 
