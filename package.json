@@ -1,10 +1,21 @@
 {
-  "name": "create-twilight-cli",
+  "name": "create-twilight-app",
   "version": "1.0.0",
-  "description": "A cli to quickly create a modern react project",
+  "description": "Quickly create a modern react project",
   "main": "index.js",
-  "repository": "https://github.com/FriendshipMagic/twilight-cli",
+  "bin": {
+    "create-twilight-cli": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FriendshipMagic/twilight-cli.git"
+  },
   "author": "friendshipmagic",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "commander": "^12.1.0",
+    "execa": "^9.3.0",
+    "fs-extra": "^11.2.0"
+  }
 }
