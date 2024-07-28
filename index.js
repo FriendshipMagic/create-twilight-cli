@@ -35,7 +35,7 @@ async function main() {
     }
 
     // 递归复制目录
-    // 排除 .git 目录
+    // 排除 .git 目录或文件
     copySync(templatePath, projectPath, {
         filter: (src) => path.basename(src) !== '.git'
     })
@@ -48,7 +48,7 @@ async function main() {
     execaSync('git', ['commit', '-m', 'feat: twilight app init'], { cwd: projectPath, stdio: 'inherit' })
     console.log(chalk.green('Git repository initialized and initial commit made!'))
 
-    // 安装node modules
+    // 安装 node modules
     execaSync(projectPackage, ['install'], { cwd: projectPath, stdio: 'inherit' })
     console.log(chalk.green('Project setup complete!'))
 }
