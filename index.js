@@ -2,25 +2,39 @@
 
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { existsSync } from 'fs'
-import { mkdirSync, copyFileSync, readdirSync } from 'fs'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs'
 import { execaSync } from 'execa'
 import inquirer from 'inquirer'
 
-// 获取当前文件路径
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+function copyRecursiveSync(src, dest) {
+    const exists = existsSync(src)
+    const stats = exists && statSync(src)
+    const isDirectory = exists && stats.isDirectory()
+    if (isDirectory) {
+        if (!existsSync(dest)) {
+            mkdirSync(dest)
+        }
+        readdirSync(src).forEach(childItemName => {
+            copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName))
+        })
+    } else {
+        copyFileSync(src, dest)
+    }
+}
 
 async function main() {
     const answers = await inquirer.prompt([
         {
             type: 'input',
-            name: 'projectName',
-            message: 'Project name:',
-        },
+            name: 'name',
+            message: 'Project name:'
+        }
     ])
 
-    const projectName = answers.projectName || 'my-app'
+    const projectName = answers.name || 'my-app'
     const projectPath = path.join(process.cwd(), projectName)
 
     if (!existsSync(projectPath)) {
@@ -28,11 +42,8 @@ async function main() {
     }
 
     const templatePath = path.join(__dirname, 'template')
-    const filesToCopy = readdirSync(templatePath)
 
-    filesToCopy.forEach(file => {
-        copyFileSync(path.join(templatePath, file), path.join(projectPath, file))
-    })
+    copyRecursiveSync(templatePath, projectPath)
 
     console.log(`Creating a new project in ${projectPath}.`)
 
