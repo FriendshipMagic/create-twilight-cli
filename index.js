@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 import fs from 'fs-extra'
 import { execaSync } from 'execa'
 import inquirer from 'inquirer'
+import chalk from 'chalk'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -33,18 +34,18 @@ async function main() {
     })
 
 
-    console.log(`Creating a new project in ${projectPath}.`)
+    console.log(chalk.green(`Creating a new project in ${projectPath}.`))
 
     execaSync('npm', ['install'], { cwd: projectPath, stdio: 'inherit' })
-    console.log('Project setup complete!')
+    console.log(chalk.green('Project setup complete!'))
 
     // 初始化 Git 仓库并进行初次提交
     execaSync('git', ['init'], { cwd: projectPath, stdio: 'inherit' })
     execaSync('git', ['add', '.'], { cwd: projectPath, stdio: 'inherit' })
     execaSync('git', ['commit', '-m', 'feat: twilight app init'], { cwd: projectPath, stdio: 'inherit' })
-    console.log('Git repository initialized and initial commit made!')
+    console.log(chalk.green('Git repository initialized and initial commit made!'))
 }
 
 main().catch(err => {
-    console.error(err)
+    console.error(chalk.red(err))
 })
