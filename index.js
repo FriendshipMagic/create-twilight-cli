@@ -16,9 +16,16 @@ async function main() {
             type: 'input',
             name: 'name',
             message: 'Project name:'
+        },
+        {
+            type: 'select',
+            name: 'package',
+            message: 'yarn/npm',
+            choices: ['yarn', 'npm']
         }
     ])
     const projectName = answers.name || 'my-app'
+    const projectPackage = answers.package || ''
     const projectPath = path.join(process.cwd(), projectName)
     const templatePath = path.join(__dirname, 'template')
 
@@ -36,14 +43,15 @@ async function main() {
 
     console.log(chalk.green(`Creating a new project in ${projectPath}.`))
 
-    execaSync('npm', ['install'], { cwd: projectPath, stdio: 'inherit' })
-    console.log(chalk.green('Project setup complete!'))
-
     // 初始化 Git 仓库并进行初次提交
     execaSync('git', ['init'], { cwd: projectPath, stdio: 'inherit' })
     execaSync('git', ['add', '.'], { cwd: projectPath, stdio: 'inherit' })
     execaSync('git', ['commit', '-m', 'feat: twilight app init'], { cwd: projectPath, stdio: 'inherit' })
     console.log(chalk.green('Git repository initialized and initial commit made!'))
+
+    // 安装node modules
+    execaSync(projectPackage, ['install'], { cwd: projectPath, stdio: 'inherit' })
+    console.log(chalk.green('Project setup complete!'))
 }
 
 main().catch(err => {
