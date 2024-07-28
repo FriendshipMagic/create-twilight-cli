@@ -1,6 +1,6 @@
 {
   "name": "create-twilight-app",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
@@ -21,7 +21,6 @@
   "private": false,
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^12.1.0",
     "execa": "^9.3.0",
     "fs-extra": "^11.2.0",
     "inquirer": "^10.1.2"

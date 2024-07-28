@@ -2,28 +2,13 @@
 
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { copyFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs'
+import fs from 'fs-extra'
 import { execaSync } from 'execa'
 import inquirer from 'inquirer'
+import chalk from 'chalk'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
-function copyRecursiveSync(src, dest) {
-    const exists = existsSync(src)
-    const stats = exists && statSync(src)
-    const isDirectory = exists && stats.isDirectory()
-    if (isDirectory) {
-        if (!existsSync(dest)) {
-            mkdirSync(dest)
-        }
-        readdirSync(src).forEach(childItemName => {
-            copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName))
-        })
-    } else {
-        copyFileSync(src, dest)
-    }
-}
 
 async function main() {
     const answers = await inquirer.prompt([
@@ -31,27 +16,43 @@ async function main() {
             type: 'input',
             name: 'name',
             message: 'Project name:'
+        },
+        {
+            type: 'select',
+            name: 'package',
+            message: 'yarn/npm',
+            choices: ['yarn', 'npm']
         }
     ])
-
     const projectName = answers.name || 'my-app'
+    const projectPackage = answers.package || ''
     const projectPath = path.join(process.cwd(), projectName)
-
-    if (!existsSync(projectPath)) {
-        mkdirSync(projectPath)
-    }
-
     const templatePath = path.join(__dirname, 'template')
 
-    copyRecursiveSync(templatePath, projectPath)
+    const { copySync, ensureDirSync, pathExistsSync } = fs
+    if (!pathExistsSync(projectPath)) {
+        ensureDirSync(projectPath, undefined)
+    }
 
-    console.log(`Creating a new project in ${projectPath}.`)
+    // 递归复制目录
+    // 排除 .git 目录
+    copySync(templatePath, projectPath, {
+        filter: (src) => path.basename(src) !== '.git'
+    })
 
-    execaSync('npm', ['install'], { cwd: projectPath, stdio: 'inherit' })
+    console.log(chalk.green(`Creating a new project in ${projectPath}.`))
 
-    console.log('Project setup complete!')
+    // 初始化 Git 仓库并进行初次提交
+    execaSync('git', ['init'], { cwd: projectPath, stdio: 'inherit' })
+    execaSync('git', ['add', '.'], { cwd: projectPath, stdio: 'inherit' })
+    execaSync('git', ['commit', '-m', 'feat: twilight app init'], { cwd: projectPath, stdio: 'inherit' })
+    console.log(chalk.green('Git repository initialized and initial commit made!'))
+
+    // 安装node modules
+    execaSync(projectPackage, ['install'], { cwd: projectPath, stdio: 'inherit' })
+    console.log(chalk.green('Project setup complete!'))
 }
 
 main().catch(err => {
-    console.error(err)
+    console.error(chalk.red(err))
 })
