@@ -1,9 +1,19 @@
 {
   "name": "create-twilight-app",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
+  "files": [
+    ".gitignore",
+    ".gitmodules",
+    "index.js",
+    "package.json",
+    "README.md",
+    "yarn.lock",
+    "template/*",
+    "template/.gitignore"
+  ],
   "bin": {
     "create-twilight-cli": "./index.js"
   },
