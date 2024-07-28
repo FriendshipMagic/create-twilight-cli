@@ -19,20 +19,30 @@ async function main() {
     ])
     const projectName = answers.name || 'my-app'
     const projectPath = path.join(process.cwd(), projectName)
+    const templatePath = path.join(__dirname, 'template')
 
     const { copySync, ensureDirSync, pathExistsSync } = fs
     if (!pathExistsSync(projectPath)) {
-        ensureDirSync(projectPath)
+        ensureDirSync(projectPath, undefined)
     }
 
-    const templatePath = path.join(__dirname, 'template')
     // 递归复制目录
-    copySync(templatePath, projectPath)
+    // 排除 .git 目录
+    copySync(templatePath, projectPath, {
+        filter: (src) => !src.includes('.git')
+    })
+
 
     console.log(`Creating a new project in ${projectPath}.`)
 
     execaSync('npm', ['install'], { cwd: projectPath, stdio: 'inherit' })
     console.log('Project setup complete!')
+
+    // 初始化 Git 仓库并进行初次提交
+    execaSync('git', ['init'], { cwd: projectPath, stdio: 'inherit' })
+    execaSync('git', ['add', '.'], { cwd: projectPath, stdio: 'inherit' })
+    execaSync('git', ['commit', '-m', 'feat: twilight app init'], { cwd: projectPath, stdio: 'inherit' })
+    console.log('Git repository initialized and initial commit made!')
 }
 
 main().catch(err => {
