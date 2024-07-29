@@ -1,6 +1,6 @@
 {
   "name": "create-twilight-app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
