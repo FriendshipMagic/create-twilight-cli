@@ -1,19 +1,19 @@
-# Create-Twilight-App: Create a react app using twilight-cli
+# Create Twilight App: Create a React app using Twilight Cli
 
-致力于为前端开发者快速构建一个现代react项目
+Dedicated to helping front-end developers quickly build a modern React project
 
-## 集成工具
+## Integrated Tools
 
-- 前端框架: react
-- 打包工具: vite
-- 支持Typescript
-- react-route路由
-- 第三方UI库: antd
-- 支持tailwindcss
-- 状态管理工具: zustand
-- clsx, prettier, immer, ...
+- Front-end Framework: React
+- Build Tool: Vite
+- TypeScript Support
+- React-Router for routing
+- Third-Party UI Library: Ant Design (antd)
+- Tailwind CSS Support
+- State Management Tool: Zustand
+- Additional Tools: clsx, Prettier, Immer, ...
 
-## 如何使用
+## How to use
 
 ```shell
 npm i -g create-twilight-app
@@ -22,3 +22,7 @@ npm i -g create-twilight-app
 ```shell
 npx create-twilight-app
 ```
+
+## Submodule: Twilight-Cli
+
+[https://github.com/FriendshipMagic/twilight-cli](https://github.com/FriendshipMagic/twilight-cli)
