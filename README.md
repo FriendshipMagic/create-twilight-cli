@@ -13,6 +13,12 @@ Dedicated to helping front-end developers quickly build a modern React project
 - State Management Tool: Zustand
 - Additional Tools: clsx, Prettier, Immer, ...
 
+## Useful Functions
+
+- Dark mode
+- Chinese/English switch
+- Mobile Web App
+
 ## How to use
 
 ```shell
