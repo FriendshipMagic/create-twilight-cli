@@ -14,6 +14,10 @@
     "template/*",
     "template/.gitignore"
   ],
+  "scripts": {
+    "lint": "eslint . \"**/*.js\" --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write \"**/*.js\""
+  },
   "bin": {
     "create-twilight-cli": "./index.js"
   },
@@ -34,5 +38,13 @@
     "execa": "^9.3.0",
     "fs-extra": "^11.2.0",
     "inquirer": "^10.1.2"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3"
   }
 }
