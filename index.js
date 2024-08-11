@@ -15,17 +15,18 @@ async function main() {
         {
             type: 'input',
             name: 'name',
-            message: 'Project name:'
+            message: 'Project name:',
         },
         {
             type: 'select',
             name: 'package',
             message: 'yarn/npm',
-            choices: ['yarn', 'npm']
-        }
+            choices: ['yarn', 'npm'],
+        },
     ])
     const projectName = answers.name || 'my-app'
     const projectPackage = answers.package || ''
+    // eslint-disable-next-line no-undef
     const projectPath = path.join(process.cwd(), projectName)
     const templatePath = path.join(__dirname, 'template')
 
@@ -37,13 +38,13 @@ async function main() {
     // 递归复制目录
     // 排除 .git 目录或文件
     copySync(templatePath, projectPath, {
-        filter: (src) => path.basename(src) !== '.git'
+        filter: (src) => path.basename(src) !== '.git',
     })
 
     // 将 .npmignore 替换为 .gitignore
     execaSync('mv', [path.join(projectPath, '.npmignore'), path.join(projectPath, '.gitignore')], {
         cwd: projectPath,
-        stdio: 'inherit'
+        stdio: 'inherit',
     })
 
     console.log(chalk.green(`Creating a new project in ${projectPath}.`))
@@ -59,6 +60,6 @@ async function main() {
     console.log(chalk.green('Project setup complete!'))
 }
 
-main().catch(err => {
+main().catch((err) => {
     console.error(chalk.red(err))
 })
