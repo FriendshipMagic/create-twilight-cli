@@ -26,7 +26,6 @@ async function main() {
     ])
     const projectName = answers.name || 'my-app'
     const projectPackage = answers.package || ''
-    // eslint-disable-next-line no-undef
     const projectPath = path.join(process.cwd(), projectName)
     const templatePath = path.join(__dirname, 'template')
 

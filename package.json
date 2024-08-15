@@ -1,6 +1,6 @@
 {
   "name": "create-twilight-app",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
@@ -43,6 +43,7 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.0",
+    "@types/node": "^22.3.0",
     "eslint": "^9.9.0",
     "globals": "^15.9.0",
     "prettier": "^3.3.3"
