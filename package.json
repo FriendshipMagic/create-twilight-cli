@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FriendshipMagic/create-twilight-app.git"
+    "url": "git+https://github.com/frontend-is-magic/create-twilight-app.git"
   },
   "keywords": [
     "react",
