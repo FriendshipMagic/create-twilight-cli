@@ -1,6 +1,6 @@
 {
   "name": "create-twilight-app",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "Quickly create a modern react project",
   "type": "module",
   "main": "index.js",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FriendshipMagic/create-twilight-app.git"
+    "url": "git+https://github.com/frontend-is-magic/create-twilight-app.git"
   },
   "keywords": [
     "react",

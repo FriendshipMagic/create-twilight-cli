@@ -31,4 +31,4 @@ npx create-twilight-app
 
 ## Submodule: Twilight-Cli
 
-[https://github.com/FriendshipMagic/twilight-cli](https://github.com/FriendshipMagic/twilight-cli)
+[https://github.com/frontend-is-magic/twilight-cli](https://github.com/frontend-is-magic/twilight-cli)
